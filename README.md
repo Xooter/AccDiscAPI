@@ -12,7 +12,7 @@
 # AccDiscAPI 
 
 ### **Description** 
-AccDiscAPI is an unofficial open source wrapper capable of helping you manage a discord account.
+AccDiscAPI is an unofficial open source library capable of helping you manage a discord account.
 
 
 ### **Initial configuration**
