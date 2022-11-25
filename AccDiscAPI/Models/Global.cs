@@ -15,12 +15,12 @@ namespace AccDiscAPI.Models
         /// <summary>
         /// Auth of discord.
         /// </summary>
-        public static string Authorization = "Mzg5NDQzMjg2Mzk5NDUxMTM5.GV2pkV.DRsajBqTm11aEdUSHdKMng2VHdjNTB0NHpiaDR0eDlyWjNTSW1oZ2F3cVpfcDMxam1jelVab1I3czFBaThkblVhcnFGSDFWcXJLaVBBLVpF";
+        public static string Authorization = "";
         
         /// <summary>
         /// Cookie of an account.
         /// </summary>
-        public static string Cookie = "__dcfduid=e03fe4302c4211ecbbaaf306f80223d0; __sdcfduid=e03fe4312c4211ecbbaaf306f80223d0799daa4ff6ffa3b19ed2d15981db773dd3ee63aa354dd2df4f62c497afca9fe6; __stripe_mid=d4fb3118-194e-45b5-8131-cb1b6c74938bbf5fd9; __cfruid=1c04843e2842e3cc072c25b7d05852a1f6fdb71d-1668966784";
+        public static string Cookie = "";
 
         public static RestRequest AddHeader(RestRequest request)
         {
