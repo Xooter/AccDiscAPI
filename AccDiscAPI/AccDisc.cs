@@ -12,20 +12,16 @@ using System.Diagnostics;
 
 namespace AccDiscAPI
 {
-    public class Main
+    public class AccDisc
     {
-        //todo: agregaar roll
-        // agregar roll {patch}
-        // actualizar perfil con {"roles":["517081276096839681","837668923632517171","819023249001283624"]} XD
-        // quitar roll mas de lo mismo
-        public Main()
+        public AccDisc()
         {
+            // Testing
+            //Stopwatch timeMeasure = new Stopwatch();
+            //timeMeasure.Start();
 
-            Stopwatch timeMeasure = new Stopwatch();
-            timeMeasure.Start();
-
-            timeMeasure.Stop();
-            Console.WriteLine($"Finished: {timeMeasure.Elapsed.TotalMilliseconds} ms");
+            //timeMeasure.Stop();
+            //Console.WriteLine($"Finished: {timeMeasure.Elapsed.TotalMilliseconds} ms");
         }
         
         /// <summary>

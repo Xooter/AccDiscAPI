@@ -75,7 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
+    <Compile Include="AccDisc.cs" />
     <Compile Include="Models\Accounts.cs" />
     <Compile Include="Models\Attachment.cs" />
     <Compile Include="Models\Channel\ChannelBase.cs" />
