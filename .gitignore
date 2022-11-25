@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/AppLogger.csproj.nuspec
+/AccDiscAPI/AccDiscAPI.nuspec
+/AccDiscAPI/icon.png
