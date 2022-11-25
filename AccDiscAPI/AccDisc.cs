@@ -1,29 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AccDiscAPI.Models;
 using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using AccDiscAPI.Models.Channel;
-using System.Diagnostics;
 
 namespace AccDiscAPI
 {
     public class AccDisc
     {
-        public AccDisc()
-        {
-            // Testing
-            //Stopwatch timeMeasure = new Stopwatch();
-            //timeMeasure.Start();
-
-            //timeMeasure.Stop();
-            //Console.WriteLine($"Finished: {timeMeasure.Elapsed.TotalMilliseconds} ms");
-        }
-        
         /// <summary>
         /// Get last X message of any channel.
         /// </summary>
