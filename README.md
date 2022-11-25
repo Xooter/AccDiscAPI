@@ -1,4 +1,4 @@
-# **Índice**
+# **Index**
 
 1. [**AccDiscAPI**](#AccDiscAPI)
 3. [**TODO**](#TODO)
@@ -19,7 +19,7 @@ This package need the cookies of an account and the auth.
 This can be achieved in the header of any packet using a network traffic capture program.
 
 
->**Important**If this is not respected the program will not work.
+>**Important** If this is not respected the program will not work.
 
 ```csharp
 using AccDiscAPI.Models;
