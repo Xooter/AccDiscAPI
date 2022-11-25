@@ -6,6 +6,8 @@
     
 
 ---
+>### Nugget Package
+>[nuget.org](https://www.nuget.org/packages/AccDiscAPI/)
 
 # AccDiscAPI 
 
