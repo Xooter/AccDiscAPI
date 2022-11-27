@@ -2,8 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Net.Http;
+using static AccDiscAPI.Models.Global;
 
 namespace AccDiscAPI.Models
 {
@@ -24,8 +23,6 @@ namespace AccDiscAPI.Models
         public List<Accounts> connected_accounts;
         public List<UserGuild> mutual_guilds;
 
-        private static readonly HttpClient http_client = new HttpClient(new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate });
-
         /// <summary>
         /// Save user avatar asynchronously
         /// </summary>
@@ -33,19 +30,21 @@ namespace AccDiscAPI.Models
         /// <param name="path">The output path</param>
         public async void SaveAvatar(string file_name = "", string path = "")
         {
-            file_name = (file_name == "") ? $"avatar_{this.id}" : file_name;
+            file_name = (file_name == "") ? $"avatar_{this.username.Replace(" ", "_")}" : file_name;
 
             http_client.DefaultRequestHeaders.Accept.ParseAdd("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
             http_client.DefaultRequestHeaders.AcceptEncoding.ParseAdd("gzip, deflate");
             try
             {
-                byte[] data = await http_client.GetByteArrayAsync($"https://cdn.discordapp.com/avatars/{this.id}/{this.avatar}.webp");
+                byte[] data = await http_client.GetByteArrayAsync($"https://cdn.discordapp.com/avatars/{this.id}/{this.avatar}.gif");
                 
-                File.WriteAllBytes(!string.IsNullOrEmpty(path) ? path + "/" : path + $"{file_name}.webp", data);
+                File.WriteAllBytes(!string.IsNullOrEmpty(path) ? path + "/" : path + $"{file_name}.gif", data);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                byte[] data = await http_client.GetByteArrayAsync($"https://cdn.discordapp.com/avatars/{this.id}/{this.avatar}.webp");
+
+                File.WriteAllBytes(!string.IsNullOrEmpty(path) ? path + "/" : path + $"{file_name}.jpg", data);
             }
         }
 

@@ -1,13 +1,16 @@
 ﻿using Newtonsoft.Json.Linq;
 using RestSharp;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 
 namespace AccDiscAPI.Models
 {
     public static class Global
     {
         public static readonly RestClient client = new RestClient("https://discord.com");
-        
+        public static readonly HttpClient http_client = new HttpClient(new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate });
+
         /// <summary>
         /// Auth of discord.
         /// </summary>
@@ -190,6 +193,14 @@ namespace AccDiscAPI.Models
             return refer_message;
         }
 
+        /// <summary>
+        /// Search structure result
+        /// </summary>
+        public struct SearchResults
+        {
+            public List<Message> message_list;
+            public int total_results;
+        }
     }
 
 

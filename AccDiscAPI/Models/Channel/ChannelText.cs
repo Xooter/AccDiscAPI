@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using RestSharp;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace AccDiscAPI.Models.Channel
 {
@@ -66,6 +67,35 @@ namespace AccDiscAPI.Models.Channel
             Global.client.Execute(Global.AddHeader(request));
 
             this.rate_limit_per_user = rate;
+        }
+
+        /// <summary>
+        /// Get all pins of channel
+        /// </summary>
+        public List<Message> GetPins()
+        {
+            var request = new RestRequest($"https://discord.com/api/v9/channels/{this.id}/pins", Method.Get);
+
+            var response = Global.client.Execute(Global.AddHeader(request));
+
+            if (response.Content.Contains("Missing Access"))
+            {
+                Debug.WriteLine("Missing Access");
+                return null;
+            }
+
+            JArray json = JArray.Parse(response.Content);
+
+            List<Message> message_list = new List<Message>();
+
+            if (json.Count == 0) return new List<Message>();
+
+            foreach (JObject arr_json in json)
+            {
+                message_list.Add(Global.ConvertJsonToMessage(arr_json));
+            }
+
+            return message_list;
         }
     }
 }

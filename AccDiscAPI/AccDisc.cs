@@ -4,6 +4,8 @@ using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using AccDiscAPI.Models.Channel;
+using System.Diagnostics;
+using static AccDiscAPI.Models.Global;
 
 namespace AccDiscAPI
 {
@@ -92,6 +94,20 @@ namespace AccDiscAPI
         }
 
         /// <summary>
+        /// Enter to Guild by id
+        /// </summary>
+        public Guild EnterGuild(long server_id)
+        {
+            var request = new RestRequest($"https://discord.com/api/v9/guilds/{server_id}/members/@me?lurker=false", Method.Put);
+            request.AddJsonBody(new {});
+            Global.client.Execute(Global.AddHeader(request));
+
+            Guild guild = GetGuildInfo(server_id);
+
+            return guild;
+
+        }
+        /// <summary>
         /// Get Guild by id.
         /// </summary>
         /// <returns>
@@ -103,7 +119,13 @@ namespace AccDiscAPI
 
             var response = Global.client.Execute(Global.AddHeader(request));
 
-            JObject json = JObject.Parse(response.Content.Replace("\"", "'"));
+            if (response.Content.Contains("Missing Access"))
+            {
+                Debug.WriteLine("Missing Access");
+                return null;
+            }
+            //.Replace("\"", "'")
+            JObject json = JObject.Parse(response.Content);
 
             List<Roll> roles = new List<Roll>();
             foreach (JObject item in json["roles"])
@@ -141,7 +163,7 @@ namespace AccDiscAPI
                 //type 4 = titulo
                 //type 13
                 //type 15 = foro
-                
+
                 if ((int)channel["type"] == 0)
                 {
                     TextChannel.Add(new ChannelText()
@@ -199,7 +221,7 @@ namespace AccDiscAPI
                 TextChannel = TextChannel,
                 VoiceChannel = VoiceChannel,
             };
-            
+
             return result;
         }
 
@@ -212,6 +234,73 @@ namespace AccDiscAPI
 
             request.AddJsonBody(new { note = note });
             Global.client.Execute(Global.AddHeader(request));
+        }
+
+        /// <summary>
+        /// Search Messages
+        /// </summary>
+        /// <returns></returns>
+        public SearchResults? SearchMessage(long server_id,string content)
+        {
+            var request = new RestRequest($"https://discord.com/api/v9/guilds/{server_id}/messages/search?content={content}", Method.Get);
+
+            var response = Global.client.Execute(Global.AddHeader(request));
+
+            if (response.Content.Contains("Missing Access"))
+            {
+                Debug.WriteLine("Missing Access");
+                return null;
+            }
+
+            JObject json = JObject.Parse(response.Content);
+            JArray message_r = (JArray)json["messages"];
+
+            List<Message> message_list = new List<Message>();
+
+            if (message_r.Count == 0) return null;
+
+            foreach (var arr_json in message_r)
+            {
+                JObject new_json = JObject.Parse(arr_json[0].ToString());
+                message_list.Add(Global.ConvertJsonToMessage(new_json));
+            }
+
+            SearchResults result = new SearchResults()
+            {
+                message_list = message_list,
+                total_results = (int)json["total_results"]
+            };
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get all pins of channel
+        /// </summary>
+        public List<Message> GetPins(long channel_id)
+        {
+            var request = new RestRequest($"https://discord.com/api/v9/channels/{channel_id}/pins", Method.Get);
+
+            var response = Global.client.Execute(Global.AddHeader(request));
+
+            if (response.Content.Contains("Missing Access"))
+            {
+                Debug.WriteLine("Missing Access");
+                return null;
+            }
+
+            JArray json = JArray.Parse(response.Content);
+
+            List<Message> message_list = new List<Message>();
+
+            if (json.Count == 0) return new List<Message>();
+
+            foreach (JObject arr_json in json)
+            {
+                message_list.Add(Global.ConvertJsonToMessage(arr_json));
+            }
+
+            return message_list;
         }
 
         /// <summary>
@@ -313,7 +402,7 @@ namespace AccDiscAPI
         /// <remarks>
         /// Need server permissions.
         /// </remarks>
-        public void Annoy(long channel_1, long channel_2, long server_id, long client_id , int movemments = 10, int sleep_time = 350)
+        public void Annoy(long channel_1, long channel_2, long server_id, long client_id, int movemments = 10, int sleep_time = 350)
         {
             for (int i = 0; i < movemments; i++)
             {

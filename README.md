@@ -42,11 +42,12 @@ Global.Cookie = "_XxXX=XXXxXXxXxXxXX;[...]";
 - **Guilds**
 - [X] Get all rolls count
 - [ ] Emojis
-- [ ] Download icon
+- [X] Download icon
 - [ ] Edit configuration
 - **Messages**
 - [ ] Reactions
 - [ ] Create Threads
+- [X] Search Messages
 - **Invites**
 - [ ] Create Invitation
 - [x] Get Channel invitations
@@ -59,6 +60,7 @@ Global.Cookie = "_XxXX=XXXxXXxXxXxXX;[...]";
 - [ ] Delete channel
 - [ ] Create channel
 - [ ] Title channel Class
+- [X] Pins
 ---
 
 # Documentation
@@ -102,6 +104,8 @@ This section will be updated with the updates.
 | FullMute           | Mute or Deaf an user by id.        | True  |               |
 | MoveToChannel      | Moves the user to a channel.       | True  |               |
 | Annoy              | Moves the user x number of times.  | True  |               |
+| SearchMessage      | Search Messages.  | False  | List<[Message](#Message)>  |
+| EnterGuild      | Enter to Guild  | False  | [Guild](#Guild)>  |
 
 ---
 
@@ -131,11 +135,15 @@ This section will be updated with the updates.
 | verification_level        | Verification level | int       |
 | TextChannel          | All Text type channels  | List<[ChannelText](#ChannelText)>     |
 | VoiceChannel        | All Voice type channels | List<[ChannelVoice](#ChannelVoice)>    |
+| SearchMessage      | Search Messages.  | False  | List<[Message](#Message)>  |
 
 #### Methods
 | Method        | Description                              | Perms | Return |
 |---------------|------------------------------------------|-------|--------|
 | GetRolesCount | Count the number of member of each roll. | True  |        |
+| SaveAvatar      | Save Guild avatar asynchronously  | False  |   |
+| SearchMessage      | Search Messages.  | False  | List<[Message](#Message)>  |
+| Exit      | Exit guild.  | False  |    |
 
 ## User
 
@@ -235,6 +243,11 @@ This section will be updated with the updates.
 | max_age    | expiration time  | int           |
 | max_uses   | expiration usage | int           |
 
+#### Methods
+| Method             | Description                           | Perms | Return                   |
+|--------------------|---------------------------------------|-------|--------------------------|
+| Delete | Delete invitation in the channel    | True | Bool |
+
 
 ## Attachment
 
@@ -250,6 +263,10 @@ This section will be updated with the updates.
 | size         | Image size          | int    |
 | url          |                     | string |
 
+#### Methods
+| Method     | Description          | Perms | Return                 |
+|------------|----------------------|-------|------------------------|
+| Save | Save Attachment asynchronously   | False |  |
 ## Accounts
 
 #### Atributes
@@ -276,8 +293,11 @@ This section will be updated with the updates.
 #### Methods
 | Method     | Description          | Perms | Return                 |
 |------------|----------------------|-------|------------------------|
+| SendMessage | Send channel message  | False | [Message](#Message)   |
 | GetInvites | Get invitation info  | True  | List<[Invite](#Invite)> |
-| ChangeName | Edit name of channel | True  | Message                |
+| ChangeName | Edit name of channel | True  |                      |
+| CreateInvitation | Create invitation of channel | True  | [Invite](#Invite)                |
+| Delete | Delete channel | True  | bool    |
 
 ### ChannelText
 
@@ -292,6 +312,7 @@ This section will be updated with the updates.
 | GetChannelMessages | Get last X message of the channel.    | False | List<[Message](#Invite)> |
 | ChangeTopic        | Change topic of channel.              | True  |                          |
 | ChangeRate         | Change the user wait-time in channel. | True  |                          |
+| GetPins  | Get all pins of channel | False  |   List<[Message](#Message)>     |
 
 ### ChannelVoice
 
