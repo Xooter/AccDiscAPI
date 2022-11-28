@@ -85,7 +85,7 @@ This section will be updated with the updates.
 - [ChannelText](#ChannelText)
 - [ChannelVoice](#ChannelVoice)
 
-<hr>
+---
 
 ## AccDisc
 
@@ -135,7 +135,6 @@ This section will be updated with the updates.
 | verification_level        | Verification level | int       |
 | TextChannel          | All Text type channels  | List<[ChannelText](#ChannelText)>     |
 | VoiceChannel        | All Voice type channels | List<[ChannelVoice](#ChannelVoice)>    |
-| SearchMessage      | Search Messages.  | False  | List<[Message](#Message)>  |
 
 #### Methods
 | Method        | Description                              | Perms | Return |
