@@ -8,20 +8,20 @@ namespace AccDiscAPI.Models
 {
     public class User
     {
-        public long id;
-        public string avatar;
-        public string avatar_decoration;
-        public int? discriminator;
-        public long? public_flags;
-        public int? flags;
-        public string username;
-        public string bio;
-        public string accent_color;
-        public string banner;
-        public string banner_color;
+        public long id { get; set; }
+        public string avatar { get; set; }
+        public string avatar_decoration { get; set; }
+        public int? discriminator { get; set; }
+        public long? public_flags { get; set; }
+        public int? flags { get; set; }
+        public string username { get; set; }
+        public string bio { get; set; }
+        public string accent_color { get; set; }
+        public string banner { get; set; }
+        public string banner_color { get; set; }
 
-        public List<Accounts> connected_accounts;
-        public List<UserGuild> mutual_guilds;
+        public List<Accounts> connected_accounts { get; set; }
+        public List<UserGuild> mutual_guilds { get; set; }
 
         /// <summary>
         /// Save user avatar asynchronously
@@ -37,7 +37,7 @@ namespace AccDiscAPI.Models
             try
             {
                 byte[] data = await http_client.GetByteArrayAsync($"https://cdn.discordapp.com/avatars/{this.id}/{this.avatar}.gif");
-                
+
                 File.WriteAllBytes(!string.IsNullOrEmpty(path) ? path + "/" : path + $"{file_name}.gif", data);
             }
             catch (Exception ex)

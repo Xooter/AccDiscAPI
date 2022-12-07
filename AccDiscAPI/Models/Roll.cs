@@ -2,18 +2,18 @@
 {
     public class Roll
     {
-        public long id;
-        public string name;
+        public long id { get; set; }
+        public string name { get; set; }
 
-        public int color;
-        public string description;
-        public int flags;
-        public bool hoist;
-        public bool managed;
-        public bool mentionable;
-        public int position;
-        public long permissions;
+        public int color { get; set; }
+        public string description { get; set; }
+        public int flags { get; set; }
+        public bool hoist { get; set; }
+        public bool managed { get; set; }
+        public bool mentionable { get; set; }
+        public int position { get; set; }
+        public long permissions { get; set; }
 
-        public int members;
+        public int members { get; set; }
     }
 }

@@ -6,22 +6,22 @@ namespace AccDiscAPI.Models
 {
     public class Message
     {
-       
-        public long id;
-        public List<Attachment> attachments;
-        public User author;
-        public long channel_id;
-        public string content;
-        public string edited_timestamp;
-        public int flags;
-        public bool mention_everyone;
-        public List<Roll> mention_roles;
-        public List<User> mentions;
-        public Message referenced_message = null;
-        public bool pinned;
-        public string timestamp;
-        public bool tts;
-        public int type;
+
+        public long id { get; set; }
+        public List<Attachment> attachments { get; set; }
+        public User author { get; set; }
+        public long channel_id { get; set; }
+        public string content { get; set; }
+        public string edited_timestamp { get; set; }
+        public int flags { get; set; }
+        public bool mention_everyone { get; set; }
+        public List<Roll> mention_roles { get; set; }
+        public List<User> mentions { get; set; }
+        public Message referenced_message { get; set; }
+        public bool pinned { get; set; }
+        public string timestamp { get; set; }
+        public bool tts { get; set; }
+        public int type { get; set; }
 
         /// <summary>
         /// Delete this message.
@@ -57,6 +57,6 @@ namespace AccDiscAPI.Models
             Message msg_callback = Global.ConvertJsonToMessage(json);
             return msg_callback;
         }
-        
+
     }
 }

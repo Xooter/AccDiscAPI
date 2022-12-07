@@ -7,13 +7,13 @@ namespace AccDiscAPI.Models
 {
     public class ChannelBase
     {
-        public long id;
-        public string name;
-        public long guild_id;
-        public long? last_message_id;
-        public long? parent_id;
-        public bool nsfw;
-        public int position;
+        public long id { get; set; }
+        public string name { get; set; }
+        public long guild_id { get; set; }
+        public long? last_message_id { get; set; }
+        public long? parent_id { get; set; }
+        public bool nsfw { get; set; }
+        public int position { get; set; }
 
         /// <summary>
         /// Send channel message.
@@ -107,7 +107,7 @@ namespace AccDiscAPI.Models
         /// <param name="max_uses">Maximum number of uses </param>
         /// <param name="temporary">When temporary members go offline, they are automatically kicked unless assigned a role</param>
         /// <returns></returns>
-        public Invite CreateInvitation(int max_age = 0, int max_uses = 0, bool temporary=false)
+        public Invite CreateInvitation(int max_age = 0, int max_uses = 0, bool temporary = false)
         {
             var request = new RestRequest($"https://discord.com/api/v9/channels/{this.id}/invites", Method.Post);
 
@@ -139,7 +139,8 @@ namespace AccDiscAPI.Models
                 public_flags = (int)json["inviter"]["public_flags"]
             };
 
-            Invite invite = new Invite() {
+            Invite invite = new Invite()
+            {
                 code = (string)json["code"],
                 uses = (int)json["uses"],
                 expires_at = (string)json["expires_at"],
@@ -153,7 +154,7 @@ namespace AccDiscAPI.Models
 
             return invite;
         }
-        
+
         /// <summary>
         /// Delete channel
         /// </summary>

@@ -4,10 +4,10 @@ namespace AccDiscAPI.Models.Channel
 {
     public class ChannelVoice : ChannelBase
     {
-       
-        public int bitrate;
-        public int user_limit;
-        public string rtc_region;
+
+        public int bitrate { get; set; }
+        public int user_limit { get; set; }
+        public string rtc_region { get; set; }
 
         /// <summary>
         /// Change bitrate of the channel.
@@ -31,7 +31,7 @@ namespace AccDiscAPI.Models.Channel
         /// <remarks>
         /// Need server permissions.
         /// </remarks>
-        public void ChangeUserLimit(int user_limit=0)
+        public void ChangeUserLimit(int user_limit = 0)
         {
             var request = new RestRequest($"https://discord.com/api/v9/channels/{this.id}", Method.Patch);
 

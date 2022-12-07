@@ -4,11 +4,11 @@ namespace AccDiscAPI.Models
 {
     public class UserGuild
     {
-        public long id;
-        public string nick;
+        public long id { get; set; }
+        public string nick { get; set; }
 
-        public List<string> rolls;
-        public string joined_at;
+        public List<string> rolls { get; set; }
+        public string joined_at { get; set; }
 
         //todo:
         //Method addroll

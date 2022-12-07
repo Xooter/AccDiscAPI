@@ -6,14 +6,14 @@ namespace AccDiscAPI.Models
 {
     public class Attachment
     {
-        public long id;
-        public string content_type;
-        public string filename;
-        public int height;
-        public int width;
-        public string proxy_url;
-        public int size;
-        public string url;
+        public long id { get; set; }
+        public string content_type { get; set; }
+        public string filename { get; set; }
+        public int height { get; set; }
+        public int width { get; set; }
+        public string proxy_url { get; set; }
+        public int size { get; set; }
+        public string url { get; set; }
 
         /// <summary>
         /// Save Guild avatar asynchronously

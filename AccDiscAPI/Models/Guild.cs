@@ -11,29 +11,29 @@ namespace AccDiscAPI.Models
 {
     public class Guild
     {
-        public long id;
-        public string name;
-        public long? afk_channel_id;
-        public int? afk_timeout;
-        public string discovery_splash;
+        public long id { get; set; }
+        public string name { get; set; }
+        public long? afk_channel_id { get; set; }
+        public int? afk_timeout { get; set; }
+        public string discovery_splash { get; set; }
         //todo:public List<Emoji> emojis
-        public int? explicit_content_filter;
-        public List<string> features;
-        public string icon;
-        public int? max_members;
-        public bool nsfw;
-        public int? nsfw_level;
-        public long owner_id;
-        public string preferred_locale;
-        public int? premium_tier;
-        public long? public_updates_channel_id;
-        public string region;
-        public List<Roll> roles;
-        public long? rules_channel_id;
-        public int verification_level;
+        public int? explicit_content_filter { get; set; }
+        public List<string> features { get; set; }
+        public string icon { get; set; }
+        public int? max_members { get; set; }
+        public bool nsfw { get; set; }
+        public int? nsfw_level { get; set; }
+        public long owner_id { get; set; }
+        public string preferred_locale { get; set; }
+        public int? premium_tier { get; set; }
+        public long? public_updates_channel_id { get; set; }
+        public string region { get; set; }
+        public List<Roll> roles { get; set; }
+        public long? rules_channel_id { get; set; }
+        public int verification_level { get; set; }
 
-        public List<ChannelText> TextChannel;
-        public List<ChannelVoice> VoiceChannel;
+        public List<ChannelText> TextChannel { get; set; }
+        public List<ChannelVoice> VoiceChannel { get; set; }
 
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace AccDiscAPI.Models
         /// </summary>
         public async void SaveAvatar(string file_name = "", string path = "")
         {
-            file_name = (file_name == "") ? $"avatar_{this.name.Replace(" ","_")}" : file_name;
+            file_name = (file_name == "") ? $"avatar_{this.name.Replace(" ", "_")}" : file_name;
 
             http_client.DefaultRequestHeaders.Accept.ParseAdd("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
             http_client.DefaultRequestHeaders.AcceptEncoding.ParseAdd("gzip, deflate");
@@ -123,7 +123,7 @@ namespace AccDiscAPI.Models
         /// <summary>
         /// Exit to the guild
         /// </summary>
-        public void Exit() 
+        public void Exit()
         {
             var request = new RestRequest($"https://discord.com/api/v9/users/@me/guilds/{this.id}", Method.Delete);
 

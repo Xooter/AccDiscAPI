@@ -5,14 +5,14 @@ namespace AccDiscAPI.Models
 {
     public class Invite
     {
-        public string code;
-        public int uses;
-        public string expires_at;
-        public string created_at;
-        public User inviter;
-        public bool temporary;
-        public int max_age;
-        public int max_uses;
+        public string code { get; set; }
+        public int uses { get; set; }
+        public string expires_at { get; set; }
+        public string created_at { get; set; }
+        public User inviter { get; set; }
+        public bool temporary { get; set; }
+        public int max_age { get; set; }
+        public int max_uses { get; set; }
 
         /// <summary>
         /// Delete invitation in the channel

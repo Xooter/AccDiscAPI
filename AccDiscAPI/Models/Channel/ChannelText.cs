@@ -7,9 +7,9 @@ namespace AccDiscAPI.Models.Channel
 {
     public class ChannelText : ChannelBase
     {
-        
-        public string topic;
-        public int? rate_limit_per_user;
+
+        public string topic { get; set; }
+        public int? rate_limit_per_user { get; set; }
 
         /// <summary>
         /// Get last X message of the channel.
@@ -59,7 +59,7 @@ namespace AccDiscAPI.Models.Channel
         /// <remarks>
         /// Need server permissions.
         /// </remarks>
-        public void ChangeRate(int rate=0)
+        public void ChangeRate(int rate = 0)
         {
             var request = new RestRequest($"https://discord.com/api/v9/channels/{this.id}", Method.Patch);
 
